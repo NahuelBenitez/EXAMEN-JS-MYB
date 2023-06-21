@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="./assets/movie-clapperboard-svgrepo-com.svg" alt="logo" />
+        <p>MovieFilterApp</p>
+      </div>
+    </header>
+
+    <div id="filters" class="filters">
+      <label for="from-date-filter">Desde:</label>
+      <input type="date" id="from-date-filter" />
+
+      <label for="to-date-filter">Hasta:</label>
+      <input type="date" id="to-date-filter" />
+
+      <label for="rating-filter">Filtrar por calificación:</label>
+      <input type="number" id="rating-filter" min="1" max="5" />
+
+      <label for="user-id-filter">Filtrar por ID de usuario:</label>
+      <input type="number" id="user-id-filter" />
+
+      <button id="filter-button" class="btn">Filtrar</button>
+    </div>
+    <div class="loader" id="loader" style="display: none"></div>
+
+    <div id="results" class="results">
+      <ul id="results-list"></ul>
+    </div>
+    <footer>
+      <div>
+        <p>Nahuel Benitez &copy; 2023 All rights reserved</p>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
