@@ -227,6 +227,25 @@ main {
   margin-top: 10px;
 }
 
+/*Footer*/
+footer {
+  background-color: #2f3640;
+  font-family: "Oswald", sans-serif;
+  color: #f5f6fa;
+  text-align: center;
+  border-top: 2px solid #0097e6;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer div p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 /*Loader con animacion*/
 .loader {
   border: 8px solid #f3f3f3;
