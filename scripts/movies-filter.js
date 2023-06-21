@@ -376,7 +376,7 @@ const filterMovies = (movies, fromDateFilter, toDateFilter, ratingFilter, userId
     return movies.filter((item) => {
       const fromDateMatch = fromDateFilter === "" || item.watched >= fromDateFilter;
       const toDateMatch = toDateFilter === "" || item.watched <= toDateFilter;
-      const ratingMatch = ratingFilter === "" || item.rate >= parseFloat(ratingFilter);
+      const ratingMatch = ratingFilter === "" || item.rate === parseFloat(ratingFilter);
       const userIdMatch = userIdFilter === "" || item.userId === parseInt(userIdFilter);
   
       return fromDateMatch && toDateMatch && ratingMatch && userIdMatch;
