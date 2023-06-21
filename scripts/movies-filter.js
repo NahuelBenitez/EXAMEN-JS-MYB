@@ -366,3 +366,136 @@ const movies = [
   },
 ];
 
+// Funcion para obtener un usuario por ID
+const getUserById = (userId) => {
+    return users.find((user) => user.id === userId);
+  };
+
+  // Función para filtrar las películas
+const filterMovies = (movies, fromDateFilter, toDateFilter, ratingFilter, userIdFilter) => {
+    return movies.filter((item) => {
+      const fromDateMatch = fromDateFilter === "" || item.watched >= fromDateFilter;
+      const toDateMatch = toDateFilter === "" || item.watched <= toDateFilter;
+      const ratingMatch = ratingFilter === "" || item.rate >= parseFloat(ratingFilter);
+      const userIdMatch = userIdFilter === "" || item.userId === parseInt(userIdFilter);
+  
+      return fromDateMatch && toDateMatch && ratingMatch && userIdMatch;
+    });
+  };
+
+  // Función para mostrar los resultados en la pantalla
+const displayResults = (results) => {
+    resultsList.innerHTML = "";
+  
+    if (results.length === 0) {
+      resultsList.innerHTML = "<li>No se encontraron resultados.</li>";
+    } else {
+      for (let i = 0; i < results.length; i++) {
+        const listItem = document.createElement("li");
+        const movie = results[i];
+  
+        const card = document.createElement("div");
+        card.classList.add("card");
+  
+        const userInfo = getUserById(movie.userId);
+  
+        const htmlContent = `
+          <h2>${movie.title}</h2>
+          ${
+            movie.image
+              ? `<img src="${movie.image}" alt="${movie.title} Poster">`
+              : `<div class="no-image">No hay imagen disponible</div>`
+          }
+          <p><strong>Usuario:</strong> ${userInfo.name} (${userInfo.email})</p>
+          <p><strong>Dirección:</strong> ${userInfo.address.street}, ${
+          userInfo.address.city
+        }, ${userInfo.address.zipcode}</p>
+          <p><strong>Compañía:</strong> ${userInfo.company.name}</p>
+          <p><strong>Calificación:</strong> ${movie.rate}</p>
+        `;
+  
+        card.innerHTML = htmlContent;
+        listItem.appendChild(card);
+        resultsList.appendChild(listItem);
+      }
+      addResetButton();
+    }
+  };
+  
+  
+
+// Cargar todas las películas por defecto al iniciar la pagina
+function loadDefaultMovies() {
+  showLoader(); // Mostrar el loader
+
+  // Uso setTimeout para hacer efecto del loader
+  setTimeout(() => {
+    const allMovies = filterMovies(movies, "", "", "", "");
+    displayResults(allMovies);
+    hideLoader(); // Ocultar el loader después de cargar los resultados
+  }, 1000);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadDefaultMovies();
+});
+
+// Mostrar el loader
+function showLoader() {
+  if (loader) {
+    loader.style.display = "block";
+  }
+}
+
+// Ocultar el loader
+function hideLoader() {
+  if (loader) {
+    loader.style.display = "none";
+  }
+}
+
+
+// Función para resetear el filtro
+function addResetButton() {
+    const resetButton = document.createElement("button");
+    const filters = document.querySelector(".filters");
+    resetButton.classList.add("btn-reset");
+    resetButton.textContent = "Reset Filters";
+    resetButton.addEventListener("click", function () {
+      // Limpia los valores de los filtros y vuelve a cargar todas las películas
+      document.getElementById("user-id-filter").value = "";
+      document.getElementById("to-date-filter").value = "";
+      document.getElementById("from-date-filter").value = "";
+      document.getElementById("rating-filter").value = "";
+  
+      resultsList.innerHTML = ""; // Borra las tarjetas existentes
+      resetButton.remove();
+    });
+  
+    filters.appendChild(resetButton);
+  }
+
+  //  click del botón de filtro
+filterButton.addEventListener("click", () => {
+    showLoader(); // Mostrar el loader
+  
+    // Para el loader
+    setTimeout(() => {
+      const fromDateFilterValue =
+        document.getElementById("from-date-filter").value;
+      const toDateFilterValue = document.getElementById("to-date-filter").value;
+      const ratingFilterValue = document.getElementById("rating-filter").value;
+      const userIdFilterValue = document.getElementById("user-id-filter").value;
+  
+      const filteredResults = filterMovies(
+        movies,
+        fromDateFilterValue,
+        toDateFilterValue,
+        ratingFilterValue,
+        userIdFilterValue
+      );
+  
+      displayResults(filteredResults);
+      hideLoader(); // Ocultar el loader después de cargar los resultados
+    }, 2000);
+  });
