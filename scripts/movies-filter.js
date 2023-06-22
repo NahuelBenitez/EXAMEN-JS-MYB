@@ -384,7 +384,7 @@ const filterMovies = (movies, fromDateFilter, toDateFilter, ratingFilter, userId
   };
 
   // Función para mostrar los resultados en la pantalla
-const displayResults = (results) => {
+  const displayResults = (results) => {
     resultsList.innerHTML = "";
   
     if (results.length === 0) {
@@ -407,9 +407,7 @@ const displayResults = (results) => {
               : `<div class="no-image">No hay imagen disponible</div>`
           }
           <p><strong>Usuario:</strong> ${userInfo.name} (${userInfo.email})</p>
-          <p><strong>Dirección:</strong> ${userInfo.address.street}, ${
-          userInfo.address.city
-        }, ${userInfo.address.zipcode}</p>
+          <p><strong>Dirección:</strong> ${userInfo.address.street}, ${userInfo.address.city}, ${userInfo.address.zipcode}</p>
           <p><strong>Compañía:</strong> ${userInfo.company.name}</p>
           <p><strong>Calificación:</strong> ${movie.rate}</p>
         `;
@@ -418,10 +416,11 @@ const displayResults = (results) => {
         listItem.appendChild(card);
         resultsList.appendChild(listItem);
       }
+  
+      // Llamar a addResetButton solo una vez después de agregar todas las tarjetas
       addResetButton();
     }
   };
-  
   
 
 // Cargar todas las películas por defecto al iniciar la pagina
@@ -456,7 +455,10 @@ function hideLoader() {
 
 
 // Función para resetear el filtro
+let resetButtonAdded = false;
+
 function addResetButton() {
+  if (!resetButtonAdded) {
     const resetButton = document.createElement("button");
     const filters = document.querySelector(".filters");
     resetButton.classList.add("btn-reset");
@@ -467,14 +469,18 @@ function addResetButton() {
       document.getElementById("to-date-filter").value = "";
       document.getElementById("from-date-filter").value = "";
       document.getElementById("rating-filter").value = "";
-  
+
       resultsList.innerHTML = ""; // Borra las tarjetas existentes
       resetButton.remove();
-    });
-  
-    filters.appendChild(resetButton);
-  }
 
+      // Restablecer la variable de bandera a false para permitir agregar el botón nuevamente
+      resetButtonAdded = false;
+    });
+
+    filters.appendChild(resetButton);
+    resetButtonAdded = true; // Establecer la variable de bandera a true para indicar que el botón ha sido agregado
+  }
+}
   //  click del botón de filtro
 filterButton.addEventListener("click", () => {
     showLoader(); // Mostrar el loader
