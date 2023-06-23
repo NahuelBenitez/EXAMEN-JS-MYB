@@ -453,7 +453,6 @@ function hideLoader() {
   }
 }
 
-
 // Función para resetear el filtro
 let resetButtonAdded = false;
 
