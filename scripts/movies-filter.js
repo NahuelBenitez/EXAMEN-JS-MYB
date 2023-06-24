@@ -461,7 +461,7 @@ function addResetButton() {
     const resetButton = document.createElement("button");
     const filters = document.querySelector(".filters");
     resetButton.classList.add("btn-reset");
-    resetButton.textContent = "Reset Filters";
+    resetButton.textContent = "Limpiar Filtros";
     resetButton.addEventListener("click", function () {
       // Limpia los valores de los filtros y vuelve a cargar todas las películas
       document.getElementById("user-id-filter").value = "";

@@ -29,13 +29,18 @@ Recomendamos usar Visual Studio Code, y tener instalada una extension de Live Se
 
 ## Uso
 
-...
+Para usar esta app, puede filtrar sin ejercer ningun filtro haciendo click sobre Filtrar.
+Luego puede implementar filtros individuales como ser calificacion, id de usuario o 
+fecha desde, fecha hasta.
+Esto mismo al realizar click le mostrara las peliculas que se filtraron.
+
 
 ¡Disfruta explorando las películas vistas por los usuarios con esta función!
 
 ## Deploy
 
-Este proyecto ha sido posible gracias a la colaboración de Global Learning y la Municipalidad de Yerba Buena, quienes han brindado su apoyo y recursos para su desarrollo.
+Este proyecto ha sido deployado utilizando la plataforma NETLIFY.
+A continuacion te dejo el link: https://moviefilterapp.netlify.app/
 
 
 ## Agradecimientos
