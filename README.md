@@ -1,4 +1,4 @@
-# Proyecto de Películas Vistas
+# Proyecto MOVIEFILTERAPP
 
 Este proyecto busca simular una aplicación de visualización y filtrado de datos de películas vistas por usuarios. Utiliza tecnologías como JavaScript, HTML y CSS para lograr una interfaz intuitiva y atractiva.
 
