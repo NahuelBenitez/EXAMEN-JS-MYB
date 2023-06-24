@@ -238,6 +238,12 @@ main {
 .user-details {
   margin-top: 10px;
 }
+.error{
+  text-align: center;
+  color: #0097e6;
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+}
 
 /*Footer*/
 footer {

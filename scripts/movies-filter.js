@@ -388,7 +388,8 @@ const filterMovies = (movies, fromDateFilter, toDateFilter, ratingFilter, userId
     resultsList.innerHTML = "";
   
     if (results.length === 0) {
-      resultsList.innerHTML = "<li>No se encontraron resultados.</li>";
+      resultsList.innerHTML = "<p>No se encontraron resultados.</p>";
+      resultsList.classList.add("error");
     } else {
       for (let i = 0; i < results.length; i++) {
         const listItem = document.createElement("li");
@@ -504,3 +505,5 @@ filterButton.addEventListener("click", () => {
       hideLoader(); // Ocultar el loader después de cargar los resultados
     }, 2000);
   });
+  
+  
